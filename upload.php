@@ -66,6 +66,8 @@ try {
 	echo $e->getMessage();	
 }
 
-echo '<pre>';
-var_dump($recognizedImg);
-echo '<pre>';
+echo "<ul>";
+foreach ($recognizedImg->toArray()['Labels'] as $label) {
+	echo "<li>" . $label["Name"] . "</li>";
+}
+echo "</ul>";
