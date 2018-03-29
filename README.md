@@ -8,6 +8,7 @@ Auteurs :
 ### Installation
 * `git clone https://github.com/sturquier/aws-project/`
 * `cd aws-project`
+* Creer un fichier credentials.php (voir plus bas)
 * `cd app/; composer install`
 * `cd ../; php -S localhost:8080`
 
