@@ -66,8 +66,17 @@ try {
 	echo $e->getMessage();	
 }
 
-echo "<ul>";
-foreach ($recognizedImg->toArray()['Labels'] as $label) {
-	echo "<li>" . $label["Name"] . "</li>";
+
+if (file_exists('labels.txt')) {
+	unlink('labels.txt');
 }
-echo "</ul>";
+
+$labelsFile = fopen('labels.txt', 'a+');
+
+foreach ($recognizedImg->toArray()['Labels'] as $label) {
+	fwrite($labelsFile, '<li>' . $label['Name'] . '</li>' . "\n");
+}
+
+fclose($labelsFile);
+
+header('Location: ' . $_SERVER['HTTP_REFERER']);

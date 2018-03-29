@@ -1,22 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>Projet AWS</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container">
-		<h1>Projet AWS</h1>
+		<h1>Projet AWS. Pathé Barry & Simon Turquier</h1>
+
+		<hr/>
+
+		<h4>1 : Reconnaissance labels d'une image </h4>
 
 		<form action="upload.php" method="POST" enctype="multipart/form-data">
-    		<input type="file" name="fileToUpload">
-    		<input type="submit" value="Upload image" name="Upload" class="btn btn-success">
+    		<input type="file" name="fileToUpload" onchange="this.form.submit();">
 		</form>
 
+		<br/>
+
+		<button type="button" class="btn btn-success" id="displayLabels">Afficher les labels</button>
+
+		<div id="labels"></div>
+
+		<hr/>
+
 	</div>
+
+	<script type="text/javascript">
+		
+		document.getElementById("displayLabels").onclick = function(e) {
+			var ajaxRequest;
+
+			if (window.XMLHttpRequest) {
+				ajaxRequest = new XMLHttpRequest();
+			} else {
+				ajaxRequest = new ActiveXObject('Microsoft.XMLHTTP');
+			}
+
+			ajaxRequest.onreadystatechange = function() {
+				if (ajaxRequest.readyState == 4 && ajaxRequest.status == 200) {
+					document.getElementById("labels").innerHTML = ajaxRequest.responseText;
+				}
+			}
+
+			ajaxRequest.open("GET", "labels.txt", true);
+			ajaxRequest.send();
+		}
+
+	</script>
 
 </body>
 </html>
