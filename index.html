@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Projet AWS. Pathé Barry & Simon Turquier</h1>
+		<h1>Projet AWS. Pathé Barry, Sophie Lee & Simon Turquier</h1>
 
 		<hr/>
 
@@ -28,10 +28,21 @@
 
 		<hr/>
 
+		<h4>2 : Texte à analyser </h4>
+		
+		<textarea name="textToAnalyze" id="textToAnalyze" style="width: 400px; height: 100px;"></textarea>
+		
+		<br/>
+
+		<button type="submit" class="btn btn-success" id="analyzeText">Analyser le texte</button>
+
+		<div id="entities"></div>
+
 	</div>
 
 	<script type="text/javascript">
 		
+		// Rekognition
 		document.getElementById("displayLabels").onclick = function(e) {
 			var ajaxRequest;
 
@@ -48,6 +59,29 @@
 			}
 
 			ajaxRequest.open("GET", "labels.txt", true);
+			ajaxRequest.send();
+		}
+
+		// Comprehend
+		document.getElementById("analyzeText").onclick = function(e) {
+			var ajaxRequest,
+				textToAnalyze = document.getElementById('textToAnalyze').value;
+
+			if (window.XMLHttpRequest) {
+				ajaxRequest = new XMLHttpRequest();
+			} else {
+				ajaxRequest = new ActiveXObject('Microsoft.XMLHTTP');
+			}
+
+			ajaxRequest.open('POST', 'analyze.php?textToAnalyze='+textToAnalyze, true);
+			ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+			ajaxRequest.onreadystatechange = function() {
+				if (ajaxRequest.readyState == 4 && ajaxRequest.status == 200) {
+					document.getElementById("entities").innerHTML = ajaxRequest.responseText;
+				}
+			}
+
 			ajaxRequest.send();
 		}
 
