@@ -3,7 +3,8 @@
 include 'app/vendor/autoload.php';
 include './credentials.php';
 
-$textToListen = $_POST['textToListen'];
+$textToListen 	= $_POST['textToListen'];
+$voiceUser 		= $_POST['voiceUser'];
 
 // Process polly
 $polly = new Aws\Polly\PollyClient([
@@ -20,7 +21,7 @@ try {
 		'OutputFormat'	=> 'mp3',
 		'Text'			=> $textToListen,
 		'TextType'		=> 'text',
-		'VoiceId'		=> 'Matthew',
+		'VoiceId'		=> $voiceUser,
 	]);
 } catch (Aws\S3\Exception\S3Exception $e) {
 	echo $e->getMessage();
