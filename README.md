@@ -20,6 +20,11 @@ Le projet permet de :
 	* Detecter le langage via `detectDominantLanguage()`
 	* Detecter les entités via `detectEntities()`
 	* Afficher le contenu via AJAX
+* Utilisation de `Polly`
+	* Instancier un client Polly `PollyClient()`
+	* Synthetiser la voix via `synthesizeSpeech()`
+	* Stocker le fichier audio dans un fichier.mp3
+	* Afficher le .mp3 via une balise audio
 
 ### Installation
 * `git clone https://github.com/sturquier/aws-project/`

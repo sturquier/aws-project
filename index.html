@@ -38,6 +38,24 @@
 
 		<div id="entities"></div>
 
+		<hr/>
+
+		<h4>3 : Texte à écouter </h4>
+
+		<form action="listen.php" method="POST">
+			<textarea name="textToListen" id="textToListen" style="width: 400px; height: 100px;"></textarea>
+			<br/>
+			<button type="submit" class="btn btn-success">Creer le fichier audio</button>
+		</form>
+
+		<br/>
+
+		<audio controls>
+			<source src="polly.mp3" type="audio/ogg">
+			<source src="polly.mp3" type="audio/mpeg">
+			Votre navigateur ne supporte pas le fichier audio
+		</audio>
+
 	</div>
 
 	<script type="text/javascript">
